@@ -1,7 +1,7 @@
 # my-shiro
 
-## springboot + shiro + JWT 整合
-> 在前后端分离的情况下实现登录授权的解决方案
+## 01-BASE_SHIRO ：阅读《跟我学shiro》的代码
+## 02-SRPINGBOOT_SHIRO_JWT ：总结项目中使用的springboot,shiro,jwt基于前后端场景下实现认证和授权
 
 ## 开发环境
 
