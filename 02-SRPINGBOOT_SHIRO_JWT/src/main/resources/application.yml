@@ -1,0 +1,70 @@
+###########################  tomcat start ###########################
+server:
+  port: 80
+  servlet:
+    context-path: /
+  tomcat:
+    max-threads: 1000
+    min-spare-threads: 30
+    uri-encoding: UTF-8
+###########################  tomcat end  ###########################
+
+
+############################### mybatis-plus start #################################
+mybatis-plus:
+  mapper-locations: classpath:mapper/**.xml
+  type-aliases-package: com.kunyao.shiro.entity
+################################ mybatis-plus end ##################################
+
+#################################### dataSource start #################################
+spring:
+  application:
+    name: collections
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://localhost:3306/shiro?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: 123456
+
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    max-wait: 60000
+    druid:
+      initial-size: 5 #连接池初始化大小
+      min-idle: 10 #最小空闲连接数
+      max-active: 20 #最大连接数
+      web-stat-filter:
+        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*" #不统计这些请求数据
+      stat-view-servlet: #访问监控网页的登录用户名和密码
+        login-username: druid
+        login-password: druid
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+  servlet:
+    multipart:
+      max-request-size: 10MB
+      max-file-size: 10MB
+#################################### dataSource end #################################
+
+
+############################### Redis 公共配置 start ###############################
+---
+spring:
+  redis:
+    timeout: 30s
+    jedis:
+      pool:
+        max-idle: 20
+        max-wait: 10s
+        min-idle: 2
+        max-active: 800
+      shutdown-timeout: 3s
+    database: 0
+    host: 127.0.0.1
+    password:
+    port: 6379
+
+  cache:
+    type: redis
+############################### Redis 公共配置 end ##################################
